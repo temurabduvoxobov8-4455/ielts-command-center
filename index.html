@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IELTS Command Center</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- HEADER -->
+    <header>
+
+        <div>
+            <h1>IELTS COMMAND CENTER</h1>
+            <p>25-Day IELTS 7.0 Challenge</p>
+        </div>
+
+        <div class="day">
+            <span>DAY</span>
+            <strong id="dayNumber">1</strong>
+            <span>/ 25</span>
+        </div>
+
+    </header>
+
+
+    <!-- DAY NAVIGATION -->
+    <section class="day-navigation">
+
+        <button onclick="previousDay()">&lt;</button>
+
+        <div id="dayButtons"></div>
+
+        <button onclick="nextDay()">&gt;</button>
+
+    </section>
+<nav class="main-navigation">
+    <button class="nav-button active" onclick="showPage('dashboard')">
+        DASHBOARD
+    </button>
+
+    <button class="nav-button" onclick="showPage('ielts')">
+        IELTS CENTER
+    </button>
+</nav>
+
+    <main>
+
+
+        <!-- TIMER -->
+        <section class="card timer-card">
+
+            <p class="label">STUDY TIMER</p>
+
+            <div id="timer">50:00</div>
+
+            <div class="timer-buttons">
+
+                <button onclick="startTimer()">START</button>
+                <button onclick="pauseTimer()">PAUSE</button>
+                <button onclick="resetTimer()">RESET</button>
+
+            </div>
+
+            <div class="presets">
+
+                <button onclick="setTimer(25)">25 MIN</button>
+                <button onclick="setTimer(50)">50 MIN</button>
+                <button onclick="setTimer(90)">90 MIN</button>
+
+            </div>
+
+        </section>
+
+
+        <!-- TODAY PLAN -->
+        <section class="card">
+
+            <div class="section-title">
+
+                <h2 id="planTitle">
+                    Day 1 Plan
+                </h2>
+
+                <span id="progressText">
+                    0%
+                </span>
+
+            </div>
+
+            <div class="progress-bar">
+
+                <div id="progress"></div>
+
+            </div>
+
+
+            <label class="task">
+                <input type="checkbox" onchange="updateProgress()">
+                <span>Listening</span>
+            </label>
+
+            <label class="task">
+                <input type="checkbox" onchange="updateProgress()">
+                <span>Reading</span>
+            </label>
+
+            <label class="task">
+                <input type="checkbox" onchange="updateProgress()">
+                <span>Writing</span>
+            </label>
+
+            <label class="task">
+                <input type="checkbox" onchange="updateProgress()">
+                <span>Speaking</span>
+            </label>
+
+            <label class="task">
+                <input type="checkbox" onchange="updateProgress()">
+                <span>Vocabulary</span>
+            </label>
+
+            <label class="task">
+                <input type="checkbox" onchange="updateProgress()">
+                <span>Mistake Review</span>
+            </label>
+
+        </section>
+
+
+        <!-- OVERALL PROGRESS -->
+        <section class="card stats-card">
+
+            <p class="label">OVERALL PROGRESS</p>
+
+            <div class="overall-number" id="overallProgress">
+                0%
+            </div>
+
+            <div class="progress-bar">
+
+                <div id="overallProgressBar"></div>
+
+            </div>
+
+            <p class="stats-description">
+                25-day challenge completion
+            </p>
+
+        </section>
+
+
+        <!-- TOTAL STUDY TIME -->
+        <section class="card stats-card">
+
+            <p class="label">TOTAL STUDY TIME</p>
+
+            <div class="overall-number" id="totalStudyTime">
+                0h 0m
+            </div>
+
+            <p class="stats-description">
+                Time spent studying
+            </p>
+
+        </section>
+
+
+        <!-- STUDY STREAK -->
+        <section class="card stats-card streak-card">
+
+            <p class="label">STUDY STREAK</p>
+
+            <div class="overall-number" id="studyStreak">
+                0
+            </div>
+
+            <p class="stats-description">
+                consecutive study days
+            </p>
+
+        </section>
+
+
+        <!-- IELTS SCORE TRACKER -->
+        <section class="card score-card">
+
+            <div class="section-title">
+
+                <h2>IELTS SCORE TRACKER</h2>
+
+                <span id="overallBand">
+                    0.0
+                </span>
+
+            </div>
+
+
+            <div class="score-grid">
+
+
+                <div class="score-item">
+
+                    <span>LISTENING</span>
+
+                    <input
+                        type="number"
+                        id="listeningScore"
+                        min="0"
+                        max="9"
+                        step="0.5"
+                        placeholder="0.0"
+                        oninput="calculateOverall(); updateSkillAnalysis()"
+                    >
+
+                </div>
+
+
+                <div class="score-item">
+
+                    <span>READING</span>
+
+                    <input
+                        type="number"
+                        id="readingScore"
+                        min="0"
+                        max="9"
+                        step="0.5"
+                        placeholder="0.0"
+                        oninput="calculateOverall(); updateSkillAnalysis()"
+                    >
+
+                </div>
+
+
+                <div class="score-item">
+
+                    <span>WRITING</span>
+
+                    <input
+                        type="number"
+                        id="writingScore"
+                        min="0"
+                        max="9"
+                        step="0.5"
+                        placeholder="0.0"
+                        oninput="calculateOverall(); updateSkillAnalysis()"
+                    >
+
+                </div>
+
+
+                <div class="score-item">
+
+                    <span>SPEAKING</span>
+
+                    <input
+                        type="number"
+                        id="speakingScore"
+                        min="0"
+                        max="9"
+                        step="0.5"
+                        placeholder="0.0"
+                        oninput="calculateOverall(); updateSkillAnalysis()"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="score-result">
+
+                <span>OVERALL BAND</span>
+
+                <strong id="overallBandLarge">
+                    0.0
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- MISTAKE NOTEBOOK -->
+        <section class="card mistake-card">
+
+            <div class="section-title">
+
+                <div>
+
+                    <p class="label">
+                        ERROR ANALYSIS
+                    </p>
+
+                    <h2>
+                        MISTAKE NOTEBOOK
+                    </h2>
+
+                </div>
+
+                <span id="mistakeCount">
+                    0 MISTAKES
+                </span>
+
+            </div>
+
+
+            <div class="mistake-form">
+
+
+                <div class="mistake-field">
+
+                    <label for="mistakeSkill">
+                        SKILL
+                    </label>
+
+                    <select id="mistakeSkill">
+
+                        <option value="Listening">
+                            Listening
+                        </option>
+
+                        <option value="Reading">
+                            Reading
+                        </option>
+
+                        <option value="Writing">
+                            Writing
+                        </option>
+
+                        <option value="Speaking">
+                            Speaking
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="mistake-field">
+
+                    <label for="mistakeText">
+                        YOUR MISTAKE
+                    </label>
+
+                    <textarea
+                        id="mistakeText"
+                        placeholder="Write what you got wrong..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="mistake-field">
+
+                    <label for="correctText">
+                        CORRECT VERSION
+                    </label>
+
+                    <textarea
+                        id="correctText"
+                        placeholder="Write the correct answer or explanation..."
+                    ></textarea>
+
+                </div>
+
+
+                <button
+                    class="add-mistake-button"
+                    onclick="addMistake()"
+                >
+                    + ADD MISTAKE
+                </button>
+
+            </div>
+
+
+            <div class="mistake-tools">
+
+                <input
+                    type="text"
+                    id="mistakeSearch"
+                    placeholder="Search mistakes..."
+                    oninput="filterMistakes()"
+                >
+
+                <select
+                    id="mistakeFilter"
+                    onchange="filterMistakes()"
+                >
+
+                    <option value="All">
+                        All Skills
+                    </option>
+
+                    <option value="Listening">
+                        Listening
+                    </option>
+
+                    <option value="Reading">
+                        Reading
+                    </option>
+
+                    <option value="Writing">
+                        Writing
+                    </option>
+
+                    <option value="Speaking">
+                        Speaking
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div id="mistakeList"></div>
+
+        </section>
+
+
+        <!-- SCORE HISTORY -->
+        <section class="card history-card">
+
+            <div class="section-title">
+
+                <div>
+
+                    <p class="label">
+                        PERFORMANCE TRACKING
+                    </p>
+
+                    <h2>
+                        IELTS SCORE HISTORY
+                    </h2>
+
+                </div>
+
+                <span id="historyCount">
+                    0 TESTS
+                </span>
+
+            </div>
+
+
+            <div class="history-form">
+
+
+                <div class="history-input">
+
+                    <label>
+                        LISTENING
+                    </label>
+
+                    <input
+                        type="number"
+                        id="historyListening"
+                        min="0"
+                        max="9"
+                        step="0.5"
+                        placeholder="0.0"
+                    >
+
+                </div>
+
+
+                <div class="history-input">
+
+                    <label>
+                        READING
+                    </label>
+
+                    <input
+                        type="number"
+                        id="historyReading"
+                        min="0"
+                        max="9"
+                        step="0.5"
+                        placeholder="0.0"
+                    >
+
+                </div>
+
+
+                <div class="history-input">
+
+                    <label>
+                        WRITING
+                    </label>
+
+                    <input
+                        type="number"
+                        id="historyWriting"
+                        min="0"
+                        max="9"
+                        step="0.5"
+                        placeholder="0.0"
+                    >
+
+                </div>
+
+
+                <div class="history-input">
+
+                    <label>
+                        SPEAKING
+                    </label>
+
+                    <input
+                        type="number"
+                        id="historySpeaking"
+                        min="0"
+                        max="9"
+                        step="0.5"
+                        placeholder="0.0"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="save-history-button"
+                onclick="saveScoreHistory()"
+            >
+                + SAVE TEST RESULT
+            </button>
+
+
+            <div id="scoreHistoryList"></div>
+
+        </section>
+
+
+        <!-- IELTS PROGRESS CHART -->
+        <section class="card chart-card">
+
+            <div class="section-title">
+
+                <div>
+
+                    <p class="label">
+                        PERFORMANCE ANALYSIS
+                    </p>
+
+                    <h2>
+                        IELTS PROGRESS
+                    </h2>
+
+                </div>
+
+                <span id="chartBestScore">
+                    BEST: 0.0
+                </span>
+
+            </div>
+
+
+            <div class="chart-wrapper">
+
+                <canvas id="scoreChart"></canvas>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROGRESS SUMMARY -->
+        <section class="card summary-card">
+
+            <div class="section-title">
+
+                <div>
+
+                    <p class="label">
+                        SMART ANALYSIS
+                    </p>
+
+                    <h2>
+                        PROGRESS SUMMARY
+                    </h2>
+
+                </div>
+
+                <span id="summaryStatus">
+                    KEEP GOING
+                </span>
+
+            </div>
+
+
+            <div class="summary-grid">
+
+
+                <div class="summary-box">
+
+                    <span>
+                        LAST OVERALL
+                    </span>
+
+                    <strong id="summaryLastScore">
+                        0.0
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-box">
+
+                    <span>
+                        BEST OVERALL
+                    </span>
+
+                    <strong id="summaryBestScore">
+                        0.0
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-box">
+
+                    <span>
+                        TO TARGET
+                    </span>
+
+                    <strong id="summaryToTarget">
+                        7.0
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-box">
+
+                    <span>
+                        STRONGEST SKILL
+                    </span>
+
+                    <strong id="summaryStrongest">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SKILL ANALYSIS -->
+        <section class="card skill-card">
+
+            <div class="section-title">
+
+                <div>
+
+                    <p class="label">
+                        SKILL BREAKDOWN
+                    </p>
+
+                    <h2>
+                        SKILL ANALYSIS
+                    </h2>
+
+                </div>
+
+                <span id="skillAverage">
+                    AVERAGE: 0.0
+                </span>
+
+            </div>
+
+
+            <div class="skill-list">
+
+
+                <!-- LISTENING -->
+                <div class="skill-row">
+
+                    <div class="skill-info">
+
+                        <span>
+                            LISTENING
+                        </span>
+
+                        <input
+                            type="number"
+                            id="analysisListening"
+                            min="0"
+                            max="9"
+                            step="0.5"
+                            value="0"
+                            oninput="updateSkillAnalysis()"
+                        >
+
+                    </div>
+
+                    <div class="skill-bar">
+
+                        <div
+                            id="skillListeningBar"
+                            class="skill-bar-fill"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- READING -->
+                <div class="skill-row">
+
+                    <div class="skill-info">
+
+                        <span>
+                            READING
+                        </span>
+
+                        <input
+                            type="number"
+                            id="analysisReading"
+                            min="0"
+                            max="9"
+                            step="0.5"
+                            value="0"
+                            oninput="updateSkillAnalysis()"
+                        >
+
+                    </div>
+
+                    <div class="skill-bar">
+
+                        <div
+                            id="skillReadingBar"
+                            class="skill-bar-fill"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- WRITING -->
+                <div class="skill-row">
+
+                    <div class="skill-info">
+
+                        <span>
+                            WRITING
+                        </span>
+
+                        <input
+                            type="number"
+                            id="analysisWriting"
+                            min="0"
+                            max="9"
+                            step="0.5"
+                            value="0"
+                            oninput="updateSkillAnalysis()"
+                        >
+
+                    </div>
+
+                    <div class="skill-bar">
+
+                        <div
+                            id="skillWritingBar"
+                            class="skill-bar-fill"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SPEAKING -->
+                <div class="skill-row">
+
+                    <div class="skill-info">
+
+                        <span>
+                            SPEAKING
+                        </span>
+
+                        <input
+                            type="number"
+                            id="analysisSpeaking"
+                            min="0"
+                            max="9"
+                            step="0.5"
+                            value="0"
+                            oninput="updateSkillAnalysis()"
+                        >
+
+                    </div>
+
+                    <div class="skill-bar">
+
+                        <div
+                            id="skillSpeakingBar"
+                            class="skill-bar-fill"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>

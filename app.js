@@ -1,6 +1,6 @@
 // =====================================
 // IELTS COMMAND CENTER
-// APP.JS â€” CLEAN COMPLETE VERSION
+// APP.JS — CLEAN COMPLETE VERSION
 // =====================================
 
 
@@ -172,15 +172,15 @@ const plans = {
     1: [
         "Full Listening diagnostic test",
         "Full Reading diagnostic test",
-        "Writing Task 2 â€” timed essay",
+        "Writing Task 2 — timed essay",
         "Speaking Part 1 + Part 2",
         "Vocabulary review",
         "Mistake analysis"
     ],
 
     2: [
-        "Listening â€” distractors",
-        "Reading â€” True / False / Not Given",
+        "Listening — distractors",
+        "Reading — True / False / Not Given",
         "Grammar accuracy practice",
         "Speaking Part 1",
         "Vocabulary review",
@@ -188,9 +188,9 @@ const plans = {
     ],
 
     3: [
-        "Listening â€” paraphrases",
-        "Reading â€” Matching Headings",
-        "Writing â€” Introduction + Thesis",
+        "Listening — paraphrases",
+        "Reading — Matching Headings",
+        "Writing — Introduction + Thesis",
         "Speaking practice",
         "Vocabulary review",
         "Grammar review"
@@ -198,7 +198,7 @@ const plans = {
 
     4: [
         "Listening Section 3",
-        "Reading â€” Matching Information",
+        "Reading — Matching Information",
         "Speaking Part 2",
         "Complex sentence practice",
         "Vocabulary review",
@@ -217,15 +217,15 @@ const plans = {
     6: [
         "Full Reading test",
         "Reading mistake analysis",
-        "Vocabulary â€” synonyms",
+        "Vocabulary — synonyms",
         "Speaking fluency",
         "Listening practice",
         "Grammar review"
     ],
 
     7: [
-        "Writing Task 1 â€” Line Graph",
-        "Writing Task 1 â€” Bar Chart",
+        "Writing Task 1 — Line Graph",
+        "Writing Task 1 — Bar Chart",
         "Listening practice",
         "Speaking Part 2",
         "Vocabulary review",
@@ -260,7 +260,7 @@ const plans = {
     ],
 
     11: [
-        "Writing Task 2 â€” Agree / Disagree",
+        "Writing Task 2 — Agree / Disagree",
         "Essay correction",
         "Listening Section 3",
         "Speaking Part 3",
@@ -1387,23 +1387,6 @@ function escapeHTML(text) {
     return div.innerHTML;
 
 }
-// =========================================
-// DASHBOARD PAGE SETUP
-// =========================================
-
-function setupDashboard() {
-
-    const main = document.querySelector("main");
-
-    if (!main) return;
-
-    main.classList.add("premium-dashboard");
-
-}
-
-setTimeout(function () {
-    setupDashboard();
-}, 500);
 
 
 // =====================================
@@ -2172,7 +2155,7 @@ function updateProgressSummary() {
         last.textContent = "0.0";
         best.textContent = "0.0";
         target.textContent = "7.0";
-        strongest.textContent = "â€”";
+        strongest.textContent = "—";
         status.textContent =
             "START YOUR JOURNEY";
 
@@ -2212,7 +2195,7 @@ function updateProgressSummary() {
 
     };
 
-    let strongestSkill = "â€”";
+    let strongestSkill = "—";
     let strongestValue = -1;
 
     Object.keys(skills).forEach(function (skill) {
@@ -2604,7 +2587,7 @@ setTimeout(function () {
     }
 
     if (subtitle) {
-        subtitle.textContent = "IELTS 7.0 â€¢ 25-DAY CHALLENGE";
+        subtitle.textContent = "IELTS 7.0 • 25-DAY CHALLENGE";
     }
 
 
@@ -2661,3 +2644,173 @@ setTimeout(function () {
     main.parentNode.insertBefore(welcome, main);
 
 }, 900);
+// =========================================
+// TWO PAGE NAVIGATION
+// =========================================
+
+function showPage(page) {
+
+    const main = document.querySelector("main");
+    const buttons = document.querySelectorAll(".nav-button");
+
+    if (!main) return;
+
+    const cards = main.querySelectorAll(".card");
+
+    buttons.forEach(button => {
+        button.classList.remove("active");
+    });
+
+    if (page === "dashboard") {
+
+        buttons[0]?.classList.add("active");
+
+        cards.forEach(card => {
+            card.style.display = "block";
+        });
+
+        // Dashboard'da faqat asosiy bo'limlar
+        const hideCards = [
+            ".mistake-card",
+            ".history-card",
+            ".chart-card",
+            ".skill-card"
+        ];
+
+        hideCards.forEach(selector => {
+            const card = document.querySelector(selector);
+            if (card) card.style.display = "none";
+        });
+
+    }
+
+    if (page === "ielts") {
+
+        buttons[1]?.classList.add("active");
+
+        cards.forEach(card => {
+            card.style.display = "block";
+        });
+
+        // IELTS Center'da asosiy dashboard kartalarini yashirish
+        const hideCards = [
+            ".timer-card",
+            ".stats-card"
+        ];
+
+        hideCards.forEach(selector => {
+
+            document.querySelectorAll(selector).forEach(card => {
+                card.style.display = "none";
+            });
+
+        });
+
+    }
+}
+setTimeout(function () {
+    showPage("dashboard");
+}, 1000);s
+const hideCards = [
+    ".mistake-card",
+    ".history-card",
+    ".chart-card",
+    ".skill-card"
+];
+// =========================================
+// TODAY'S MISSION
+// =========================================
+
+setTimeout(function () {
+
+    const main = document.querySelector("main");
+
+    if (!main) return;
+
+    const mission = document.createElement("section");
+
+    mission.className = "mission-card";
+
+    mission.innerHTML = `
+        <div class="mission-header">
+            <div>
+                <p class="mission-label">DAILY COMMAND</p>
+                <h2>TODAY'S MISSION</h2>
+            </div>
+
+            <span class="mission-day">
+                DAY <strong id="missionDay">1</strong>
+            </span>
+        </div>
+
+        <div class="mission-list">
+
+            <div class="mission-item">
+                <span>??</span>
+                <div>
+                    <strong>LISTENING</strong>
+                    <small>Complete one listening practice</small>
+                </div>
+            </div>
+
+            <div class="mission-item">
+                <span>??</span>
+                <div>
+                    <strong>READING</strong>
+                    <small>Complete one reading practice</small>
+                </div>
+            </div>
+
+            <div class="mission-item">
+                <span>??</span>
+                <div>
+                    <strong>WRITING</strong>
+                    <small>Write one IELTS task</small>
+                </div>
+            </div>
+
+            <div class="mission-item">
+                <span>??</span>
+                <div>
+                    <strong>SPEAKING</strong>
+                    <small>Practice speaking for 15 minutes</small>
+                </div>
+            </div>
+
+            <div class="mission-item">
+                <span>??</span>
+                <div>
+                    <strong>VOCABULARY</strong>
+                    <small>Learn 20 useful words</small>
+                </div>
+            </div>
+
+            <div class="mission-item">
+                <span>??</span>
+                <div>
+                    <strong>MISTAKE REVIEW</strong>
+                    <small>Review your previous mistakes</small>
+                </div>
+            </div>
+
+        </div>
+    `;
+
+    main.parentNode.insertBefore(mission, main);
+
+}, 1100);
+// =========================================
+// DASHBOARD MISSION TITLE
+// =========================================
+
+setInterval(function () {
+
+    const planTitle = document.getElementById("planTitle");
+    const dayNumber = document.getElementById("dayNumber");
+
+    if (!planTitle || !dayNumber) return;
+
+    planTitle.textContent =
+        "TODAY'S MISSION — DAY " + dayNumber.textContent;
+
+}, 300);

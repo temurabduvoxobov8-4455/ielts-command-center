@@ -1,6 +1,6 @@
 // =====================================
 // IELTS COMMAND CENTER
-// APP.JS — CLEAN COMPLETE VERSION
+// APP.JS â€” CLEAN COMPLETE VERSION
 // =====================================
 
 
@@ -172,15 +172,15 @@ const plans = {
     1: [
         "Full Listening diagnostic test",
         "Full Reading diagnostic test",
-        "Writing Task 2 — timed essay",
+        "Writing Task 2 â€” timed essay",
         "Speaking Part 1 + Part 2",
         "Vocabulary review",
         "Mistake analysis"
     ],
 
     2: [
-        "Listening — distractors",
-        "Reading — True / False / Not Given",
+        "Listening â€” distractors",
+        "Reading â€” True / False / Not Given",
         "Grammar accuracy practice",
         "Speaking Part 1",
         "Vocabulary review",
@@ -188,9 +188,9 @@ const plans = {
     ],
 
     3: [
-        "Listening — paraphrases",
-        "Reading — Matching Headings",
-        "Writing — Introduction + Thesis",
+        "Listening â€” paraphrases",
+        "Reading â€” Matching Headings",
+        "Writing â€” Introduction + Thesis",
         "Speaking practice",
         "Vocabulary review",
         "Grammar review"
@@ -198,7 +198,7 @@ const plans = {
 
     4: [
         "Listening Section 3",
-        "Reading — Matching Information",
+        "Reading â€” Matching Information",
         "Speaking Part 2",
         "Complex sentence practice",
         "Vocabulary review",
@@ -217,15 +217,15 @@ const plans = {
     6: [
         "Full Reading test",
         "Reading mistake analysis",
-        "Vocabulary — synonyms",
+        "Vocabulary â€” synonyms",
         "Speaking fluency",
         "Listening practice",
         "Grammar review"
     ],
 
     7: [
-        "Writing Task 1 — Line Graph",
-        "Writing Task 1 — Bar Chart",
+        "Writing Task 1 â€” Line Graph",
+        "Writing Task 1 â€” Bar Chart",
         "Listening practice",
         "Speaking Part 2",
         "Vocabulary review",
@@ -260,7 +260,7 @@ const plans = {
     ],
 
     11: [
-        "Writing Task 2 — Agree / Disagree",
+        "Writing Task 2 â€” Agree / Disagree",
         "Essay correction",
         "Listening Section 3",
         "Speaking Part 3",
@@ -1387,6 +1387,23 @@ function escapeHTML(text) {
     return div.innerHTML;
 
 }
+// =========================================
+// DASHBOARD PAGE SETUP
+// =========================================
+
+function setupDashboard() {
+
+    const main = document.querySelector("main");
+
+    if (!main) return;
+
+    main.classList.add("premium-dashboard");
+
+}
+
+setTimeout(function () {
+    setupDashboard();
+}, 500);
 
 
 // =====================================
@@ -2155,7 +2172,7 @@ function updateProgressSummary() {
         last.textContent = "0.0";
         best.textContent = "0.0";
         target.textContent = "7.0";
-        strongest.textContent = "—";
+        strongest.textContent = "â€”";
         status.textContent =
             "START YOUR JOURNEY";
 
@@ -2195,7 +2212,7 @@ function updateProgressSummary() {
 
     };
 
-    let strongestSkill = "—";
+    let strongestSkill = "â€”";
     let strongestValue = -1;
 
     Object.keys(skills).forEach(function (skill) {
@@ -2587,7 +2604,7 @@ setTimeout(function () {
     }
 
     if (subtitle) {
-        subtitle.textContent = "IELTS 7.0 • 25-DAY CHALLENGE";
+        subtitle.textContent = "IELTS 7.0 â€¢ 25-DAY CHALLENGE";
     }
 
 

@@ -213,7 +213,54 @@ main {
 .presets button:hover {
     transform: translateY(-2px);
 }
+/* DASHBOARD PREMIUM GRID */
 
+main {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    align-items: start;
+}
+
+.timer-card,
+.score-card,
+main > .card:nth-child(2) {
+    grid-column: 1 / -1;
+}
+
+main > .stats-card {
+    grid-column: span 1;
+}
+
+.mistake-card,
+.history-card,
+.chart-card,
+.summary-card,
+.skill-card {
+    grid-column: 1 / -1;
+}
+
+.card {
+    min-width: 0;
+}
+
+@media (max-width: 800px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    .timer-card,
+    .score-card,
+    main > .card:nth-child(2),
+    main > .stats-card,
+    .mistake-card,
+    .history-card,
+    .chart-card,
+    .summary-card,
+    .skill-card {
+        grid-column: 1;
+    }
+}
 
 /* =========================
    PLAN

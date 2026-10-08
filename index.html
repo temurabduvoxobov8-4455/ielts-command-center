@@ -10,7 +10,34 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="locked">
+
+<!-- LOGIN GATE -->
+<div id="gate">
+    <div class="gate-box">
+
+        <div id="stepEmail">
+            <h1>IELTS COMMAND CENTER</h1>
+            <p class="gate-sub">Gmail manzilingizni kiriting, biz 6 xonali kod yuboramiz.</p>
+            <label for="gateEmail">GMAIL</label>
+            <input id="gateEmail" type="email" autocomplete="email" placeholder="ism@gmail.com">
+            <button class="gate-btn" id="sendCodeBtn">KOD YUBORISH</button>
+        </div>
+
+        <div id="stepCode" class="gate-hidden">
+            <h1>KODNI KIRITING</h1>
+            <p class="gate-sub" id="gateCodeSub"></p>
+            <label for="gateCode">6 XONALI KOD</label>
+            <input id="gateCode" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="••••••">
+            <button class="gate-btn" id="verifyCodeBtn">TASDIQLASH</button>
+            <button class="gate-link" id="gateBackBtn">Gmailni o'zgartirish</button>
+        </div>
+
+        <div id="gateMsg" role="status" aria-live="polite"></div>
+
+    </div>
+</div>
+
 
 <div class="app">
 
@@ -28,6 +55,8 @@
             <span>/ 25</span>
         </div>
 
+        <button class="gate-logout" id="logoutBtn">CHIQISH</button>
+
     </header>
 
 
@@ -41,15 +70,16 @@
         <button onclick="nextDay()">&gt;</button>
 
     </section>
-<nav class="main-navigation">
-    <button class="nav-button active" onclick="showPage('dashboard')">
-        DASHBOARD
-    </button>
 
-    <button class="nav-button" onclick="showPage('ielts')">
-        IELTS CENTER
-    </button>
-</nav>
+    <nav class="main-navigation">
+        <button class="nav-button active" onclick="showPage('dashboard')">
+            DASHBOARD
+        </button>
+
+        <button class="nav-button" onclick="showPage('ielts')">
+            IELTS CENTER
+        </button>
+    </nav>
 
     <main>
 
@@ -205,72 +235,28 @@
 
             <div class="score-grid">
 
-
                 <div class="score-item">
-
                     <span>LISTENING</span>
-
-                    <input
-                        type="number"
-                        id="listeningScore"
-                        min="0"
-                        max="9"
-                        step="0.5"
-                        placeholder="0.0"
-                        oninput="calculateOverall(); updateSkillAnalysis()"
-                    >
-
+                    <input type="number" id="listeningScore" min="0" max="9" step="0.5" placeholder="0.0"
+                        oninput="calculateOverall(); updateSkillAnalysis()">
                 </div>
 
-
                 <div class="score-item">
-
                     <span>READING</span>
-
-                    <input
-                        type="number"
-                        id="readingScore"
-                        min="0"
-                        max="9"
-                        step="0.5"
-                        placeholder="0.0"
-                        oninput="calculateOverall(); updateSkillAnalysis()"
-                    >
-
+                    <input type="number" id="readingScore" min="0" max="9" step="0.5" placeholder="0.0"
+                        oninput="calculateOverall(); updateSkillAnalysis()">
                 </div>
 
-
                 <div class="score-item">
-
                     <span>WRITING</span>
-
-                    <input
-                        type="number"
-                        id="writingScore"
-                        min="0"
-                        max="9"
-                        step="0.5"
-                        placeholder="0.0"
-                        oninput="calculateOverall(); updateSkillAnalysis()"
-                    >
-
+                    <input type="number" id="writingScore" min="0" max="9" step="0.5" placeholder="0.0"
+                        oninput="calculateOverall(); updateSkillAnalysis()">
                 </div>
 
-
                 <div class="score-item">
-
                     <span>SPEAKING</span>
-
-                    <input
-                        type="number"
-                        id="speakingScore"
-                        min="0"
-                        max="9"
-                        step="0.5"
-                        placeholder="0.0"
-                        oninput="calculateOverall(); updateSkillAnalysis()"
-                    >
-
+                    <input type="number" id="speakingScore" min="0" max="9" step="0.5" placeholder="0.0"
+                        oninput="calculateOverall(); updateSkillAnalysis()">
                 </div>
 
             </div>
@@ -295,15 +281,8 @@
             <div class="section-title">
 
                 <div>
-
-                    <p class="label">
-                        ERROR ANALYSIS
-                    </p>
-
-                    <h2>
-                        MISTAKE NOTEBOOK
-                    </h2>
-
+                    <p class="label">ERROR ANALYSIS</p>
+                    <h2>MISTAKE NOTEBOOK</h2>
                 </div>
 
                 <span id="mistakeCount">
@@ -315,68 +294,36 @@
 
             <div class="mistake-form">
 
-
                 <div class="mistake-field">
 
-                    <label for="mistakeSkill">
-                        SKILL
-                    </label>
+                    <label for="mistakeSkill">SKILL</label>
 
                     <select id="mistakeSkill">
-
-                        <option value="Listening">
-                            Listening
-                        </option>
-
-                        <option value="Reading">
-                            Reading
-                        </option>
-
-                        <option value="Writing">
-                            Writing
-                        </option>
-
-                        <option value="Speaking">
-                            Speaking
-                        </option>
-
+                        <option value="Listening">Listening</option>
+                        <option value="Reading">Reading</option>
+                        <option value="Writing">Writing</option>
+                        <option value="Speaking">Speaking</option>
                     </select>
 
                 </div>
 
-
                 <div class="mistake-field">
 
-                    <label for="mistakeText">
-                        YOUR MISTAKE
-                    </label>
+                    <label for="mistakeText">YOUR MISTAKE</label>
 
-                    <textarea
-                        id="mistakeText"
-                        placeholder="Write what you got wrong..."
-                    ></textarea>
+                    <textarea id="mistakeText" placeholder="Write what you got wrong..."></textarea>
 
                 </div>
 
-
                 <div class="mistake-field">
 
-                    <label for="correctText">
-                        CORRECT VERSION
-                    </label>
+                    <label for="correctText">CORRECT VERSION</label>
 
-                    <textarea
-                        id="correctText"
-                        placeholder="Write the correct answer or explanation..."
-                    ></textarea>
+                    <textarea id="correctText" placeholder="Write the correct answer or explanation..."></textarea>
 
                 </div>
 
-
-                <button
-                    class="add-mistake-button"
-                    onclick="addMistake()"
-                >
+                <button class="add-mistake-button" onclick="addMistake()">
                     + ADD MISTAKE
                 </button>
 
@@ -385,38 +332,14 @@
 
             <div class="mistake-tools">
 
-                <input
-                    type="text"
-                    id="mistakeSearch"
-                    placeholder="Search mistakes..."
-                    oninput="filterMistakes()"
-                >
+                <input type="text" id="mistakeSearch" placeholder="Search mistakes..." oninput="filterMistakes()">
 
-                <select
-                    id="mistakeFilter"
-                    onchange="filterMistakes()"
-                >
-
-                    <option value="All">
-                        All Skills
-                    </option>
-
-                    <option value="Listening">
-                        Listening
-                    </option>
-
-                    <option value="Reading">
-                        Reading
-                    </option>
-
-                    <option value="Writing">
-                        Writing
-                    </option>
-
-                    <option value="Speaking">
-                        Speaking
-                    </option>
-
+                <select id="mistakeFilter" onchange="filterMistakes()">
+                    <option value="All">All Skills</option>
+                    <option value="Listening">Listening</option>
+                    <option value="Reading">Reading</option>
+                    <option value="Writing">Writing</option>
+                    <option value="Speaking">Speaking</option>
                 </select>
 
             </div>
@@ -433,15 +356,8 @@
             <div class="section-title">
 
                 <div>
-
-                    <p class="label">
-                        PERFORMANCE TRACKING
-                    </p>
-
-                    <h2>
-                        IELTS SCORE HISTORY
-                    </h2>
-
+                    <p class="label">PERFORMANCE TRACKING</p>
+                    <h2>IELTS SCORE HISTORY</h2>
                 </div>
 
                 <span id="historyCount">
@@ -453,85 +369,30 @@
 
             <div class="history-form">
 
-
                 <div class="history-input">
-
-                    <label>
-                        LISTENING
-                    </label>
-
-                    <input
-                        type="number"
-                        id="historyListening"
-                        min="0"
-                        max="9"
-                        step="0.5"
-                        placeholder="0.0"
-                    >
-
+                    <label>LISTENING</label>
+                    <input type="number" id="historyListening" min="0" max="9" step="0.5" placeholder="0.0">
                 </div>
 
-
                 <div class="history-input">
-
-                    <label>
-                        READING
-                    </label>
-
-                    <input
-                        type="number"
-                        id="historyReading"
-                        min="0"
-                        max="9"
-                        step="0.5"
-                        placeholder="0.0"
-                    >
-
+                    <label>READING</label>
+                    <input type="number" id="historyReading" min="0" max="9" step="0.5" placeholder="0.0">
                 </div>
 
-
                 <div class="history-input">
-
-                    <label>
-                        WRITING
-                    </label>
-
-                    <input
-                        type="number"
-                        id="historyWriting"
-                        min="0"
-                        max="9"
-                        step="0.5"
-                        placeholder="0.0"
-                    >
-
+                    <label>WRITING</label>
+                    <input type="number" id="historyWriting" min="0" max="9" step="0.5" placeholder="0.0">
                 </div>
 
-
                 <div class="history-input">
-
-                    <label>
-                        SPEAKING
-                    </label>
-
-                    <input
-                        type="number"
-                        id="historySpeaking"
-                        min="0"
-                        max="9"
-                        step="0.5"
-                        placeholder="0.0"
-                    >
-
+                    <label>SPEAKING</label>
+                    <input type="number" id="historySpeaking" min="0" max="9" step="0.5" placeholder="0.0">
                 </div>
 
             </div>
 
 
-            <button
-                class="save-history-button"
-                onclick="saveScoreHistory()"
-            >
+            <button class="save-history-button" onclick="saveScoreHistory()">
                 + SAVE TEST RESULT
             </button>
 
@@ -547,15 +408,8 @@
             <div class="section-title">
 
                 <div>
-
-                    <p class="label">
-                        PERFORMANCE ANALYSIS
-                    </p>
-
-                    <h2>
-                        IELTS PROGRESS
-                    </h2>
-
+                    <p class="label">PERFORMANCE ANALYSIS</p>
+                    <h2>IELTS PROGRESS</h2>
                 </div>
 
                 <span id="chartBestScore">
@@ -580,15 +434,8 @@
             <div class="section-title">
 
                 <div>
-
-                    <p class="label">
-                        SMART ANALYSIS
-                    </p>
-
-                    <h2>
-                        PROGRESS SUMMARY
-                    </h2>
-
+                    <p class="label">SMART ANALYSIS</p>
+                    <h2>PROGRESS SUMMARY</h2>
                 </div>
 
                 <span id="summaryStatus">
@@ -600,56 +447,24 @@
 
             <div class="summary-grid">
 
-
                 <div class="summary-box">
-
-                    <span>
-                        LAST OVERALL
-                    </span>
-
-                    <strong id="summaryLastScore">
-                        0.0
-                    </strong>
-
+                    <span>LAST OVERALL</span>
+                    <strong id="summaryLastScore">0.0</strong>
                 </div>
 
-
                 <div class="summary-box">
-
-                    <span>
-                        BEST OVERALL
-                    </span>
-
-                    <strong id="summaryBestScore">
-                        0.0
-                    </strong>
-
+                    <span>BEST OVERALL</span>
+                    <strong id="summaryBestScore">0.0</strong>
                 </div>
 
-
                 <div class="summary-box">
-
-                    <span>
-                        TO TARGET
-                    </span>
-
-                    <strong id="summaryToTarget">
-                        7.0
-                    </strong>
-
+                    <span>TO TARGET</span>
+                    <strong id="summaryToTarget">7.0</strong>
                 </div>
 
-
                 <div class="summary-box">
-
-                    <span>
-                        STRONGEST SKILL
-                    </span>
-
-                    <strong id="summaryStrongest">
-                        �
-                    </strong>
-
+                    <span>STRONGEST SKILL</span>
+                    <strong id="summaryStrongest">—</strong>
                 </div>
 
             </div>
@@ -663,15 +478,8 @@
             <div class="section-title">
 
                 <div>
-
-                    <p class="label">
-                        SKILL BREAKDOWN
-                    </p>
-
-                    <h2>
-                        SKILL ANALYSIS
-                    </h2>
-
+                    <p class="label">SKILL BREAKDOWN</p>
+                    <h2>SKILL ANALYSIS</h2>
                 </div>
 
                 <span id="skillAverage">
@@ -683,138 +491,53 @@
 
             <div class="skill-list">
 
-
                 <!-- LISTENING -->
                 <div class="skill-row">
-
                     <div class="skill-info">
-
-                        <span>
-                            LISTENING
-                        </span>
-
-                        <input
-                            type="number"
-                            id="analysisListening"
-                            min="0"
-                            max="9"
-                            step="0.5"
-                            value="0"
-                            oninput="updateSkillAnalysis()"
-                        >
-
+                        <span>LISTENING</span>
+                        <input type="number" id="analysisListening" min="0" max="9" step="0.5" value="0"
+                            oninput="updateSkillAnalysis()">
                     </div>
-
                     <div class="skill-bar">
-
-                        <div
-                            id="skillListeningBar"
-                            class="skill-bar-fill"
-                        ></div>
-
+                        <div id="skillListeningBar" class="skill-bar-fill"></div>
                     </div>
-
                 </div>
-
 
                 <!-- READING -->
                 <div class="skill-row">
-
                     <div class="skill-info">
-
-                        <span>
-                            READING
-                        </span>
-
-                        <input
-                            type="number"
-                            id="analysisReading"
-                            min="0"
-                            max="9"
-                            step="0.5"
-                            value="0"
-                            oninput="updateSkillAnalysis()"
-                        >
-
+                        <span>READING</span>
+                        <input type="number" id="analysisReading" min="0" max="9" step="0.5" value="0"
+                            oninput="updateSkillAnalysis()">
                     </div>
-
                     <div class="skill-bar">
-
-                        <div
-                            id="skillReadingBar"
-                            class="skill-bar-fill"
-                        ></div>
-
+                        <div id="skillReadingBar" class="skill-bar-fill"></div>
                     </div>
-
                 </div>
-
 
                 <!-- WRITING -->
                 <div class="skill-row">
-
                     <div class="skill-info">
-
-                        <span>
-                            WRITING
-                        </span>
-
-                        <input
-                            type="number"
-                            id="analysisWriting"
-                            min="0"
-                            max="9"
-                            step="0.5"
-                            value="0"
-                            oninput="updateSkillAnalysis()"
-                        >
-
+                        <span>WRITING</span>
+                        <input type="number" id="analysisWriting" min="0" max="9" step="0.5" value="0"
+                            oninput="updateSkillAnalysis()">
                     </div>
-
                     <div class="skill-bar">
-
-                        <div
-                            id="skillWritingBar"
-                            class="skill-bar-fill"
-                        ></div>
-
+                        <div id="skillWritingBar" class="skill-bar-fill"></div>
                     </div>
-
                 </div>
-
 
                 <!-- SPEAKING -->
                 <div class="skill-row">
-
                     <div class="skill-info">
-
-                        <span>
-                            SPEAKING
-                        </span>
-
-                        <input
-                            type="number"
-                            id="analysisSpeaking"
-                            min="0"
-                            max="9"
-                            step="0.5"
-                            value="0"
-                            oninput="updateSkillAnalysis()"
-                        >
-
+                        <span>SPEAKING</span>
+                        <input type="number" id="analysisSpeaking" min="0" max="9" step="0.5" value="0"
+                            oninput="updateSkillAnalysis()">
                     </div>
-
                     <div class="skill-bar">
-
-                        <div
-                            id="skillSpeakingBar"
-                            class="skill-bar-fill"
-                        ></div>
-
+                        <div id="skillSpeakingBar" class="skill-bar-fill"></div>
                     </div>
-
                 </div>
-
 
             </div>
 
@@ -826,6 +549,8 @@
 </div>
 
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="auth.js"></script>
 <script src="app.js"></script>
 
 </body>
